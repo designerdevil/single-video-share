@@ -9,7 +9,9 @@ This is because, for sharing single video you would require specific meta tags w
 ### Solution
 A separate page can be created from server side by passing parameters as query string. Based on the query string meta tags will be populated & the page url can be shared. Again, before sharing the url an additional query string is appended, notifying that if user land up on the shared url it wont trigger the sharing again. And that it!!!
 
+
 ![Layering of Video page](https://designerdevil.github.io/single-video-share/docs/Mockup.png)
+
 
 [See it working!](https://designerdevil.github.io/single-video-share/index.html)
 
