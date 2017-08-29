@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!-- Facebook OpenGraph Metatags -->
+    
+    <meta property="og:site_name" content="Module"/>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Module Video title on Social Website"/>
+    <meta property="og:description" content="Some description about video that need to be displayed in social website"/>
+    <meta property="og:url" content="http://webelongtous.com/OG-TAGS-try.html"/>
+    <meta property="og:image" content="https://httpsak-a.akamaihd.net/5136026580001/5136026580001_5508202571001_5508189343001-vs.jpg?pubId=5136026580001&videoId=5446145410001" />
+
+    <!-- Twitter Card Metatags -->
+    <meta name="twitter:card" content="player" />
+    <meta name="twitter:title" content="Bison in Yellowstone" />
+    <meta name="twitter:site" content="@BrightcoveLearn">
+    <meta name="twitter:description" content="Bison walking in Yellowstone National Park." />
+    <meta name="twitter:player" content="https://players.brightcove.net/5136026580001/default_default/index.html?videoId=5446145410001" />
+    <meta name="twitter:player:width" content="360" />
+    <meta name="twitter:player:height" content="200" />
+    <meta name="twitter:image" content="https://httpsak-a.akamaihd.net/5136026580001/5136026580001_5508202571001_5508189343001-vs.jpg?pubId=5136026580001&videoId=5446145410001" />
+    <!-- <meta property="twitter:account_id" content="" /> -->
+    <title>Something Interesting on Module</title>
+
+    <script type="text/javascript">
+        var getParameterByName = function(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        },
+
+        //values to be fetched from query string and set to javascript variables to execute
+        share = getParameterByName("share"),
+        sharing = getParameterByName("sharing"),
+        videoId = getParameterByName("vidid"),
+        accountId = getParameterByName("account"),
+        playerId = getParameterByName("playerid");
+    </script>
+    <style>
+        .video-js{
+            width: 100% !important;
+            height: 100% !important;
+        }
+        #mediaShare{
+            display: none;
+        }
+        #video-module{
+            position:fixed; 
+            height: 100%; 
+            width: 100%; 
+            top:0; 
+            left: 0; 
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mediaShare">
+        <a id="facebook-module" data-href="https://www.facebook.com/sharer/sharer.php?u=">Share on Facebook</a>
+        <a id="twitter-module" data-href="https://twitter.com/intent/tweet?text=">Share on Twitter</a>
+        <a id="mail-module" data-href="mailto:?Subject=European Tour Media&amp;body=">Share via email</a>
+        <a id="whatsapp-module" data-href="whatsapp://send?text=" data-action="share/whatsapp/share">Share via Whatsapp</a>
+    </div>
+    <div id="video-module">
+        <video id="ModuleVideo" 
+        data-embed="default" 
+        data-application-id 
+        class="video-js" 
+        width="100%" 
+        height="100%" controls></video>
+    </div>
+    <div id="player-module">
+    </div>
+
+    <script type="text/javascript">
+        if(sharing == "false"){
+            //adding player for videos
+            var dynamicScript = document.createElement('script'),
+                playerContainer = document.getElementById("player-module"),
+                videoElement = document.getElementById("ModuleVideo");
+
+            //creating dynamic player attribute
+            dynamicScript.src = "//players.brightcove.net/" + accountId + "/" + playerId + "_default/index.min.js";
+            
+            //set dynamic attribute on Video
+            videoElement.setAttribute("data-video-id", videoId);
+            videoElement.setAttribute("data-account", accountId);
+            videoElement.setAttribute("data-player", playerId);
+
+            //laod player once attribut is set
+            playerContainer.append(dynamicScript);
+        }else{
+            var currentURL = window.location.href,
+            triggerElement = document.getElementById(share + "-module");
+            
+            if(triggerElement){
+                var sharerURL = triggerElement.getAttribute("data-href");
+                triggerElement.setAttribute("href", sharerURL + encodeURIComponent(currentURL + "&sharing=false"));
+                triggerElement.click();
+            }
+        }
+    </script>
+
+
+    <!-- QUERY STRING FORMAT -->
+    <!-- 
+    ?img=https://httpsak-a.akamaihd.net/5136026580001/5136026580001_5508202571001_5508189343001-vs.jpg?pubId=5136026580001
+    &vidid=5508189343001
+    &account=5136026580001
+    &playerid=default
+    &title=Something Interesting about European Tour Video
+    &desc=Bison walking in Yellowstone National Park.
+    &subject=Subject for mail object
+    &share=true 
+    -->
+</body>
+
+</html>
