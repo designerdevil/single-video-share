@@ -13,6 +13,6 @@ A separate page can be created from server side by passing parameters as query s
 ![Layering of Video page](https://designerdevil.github.io/single-video-share/docs/Mockup.png)
 
 
-[See it working!](https://designerdevil.github.io/single-video-share/index.html)
+[See it working!](https://designerdevil.github.io/single-video-share/)
 
 
